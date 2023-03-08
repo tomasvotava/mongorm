@@ -6,8 +6,39 @@ authors = ["Tomas Votava <info@tomasvotava.eu>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.black]
+line-length = 120
+
+[tool.pytest.ini_options]
+testpaths = ["tests/"]
+addopts = "-v --cov=mongorm --cov-report xml:cov.xml"
+
+[tool.pyright]
+ignore = "**/tests/"
+
+[tool.poe.tasks]
+isort = "isort mongorm/"
+isort-check = "isort --check mongorm/"
+black = "black mongorm/"
+black-check = "black --check mongorm/"
+mypy = "mypy --config-file mypy.ini mongorm/"
+pylint = "pylint --disable=fixme mongorm/"
+todos = "pylint --disable=all --enable=fixme mongorm/"
+
+format = ["isort", "black"]
+lint = ["isort-check", "black-check", "pylint", "mypy"]
+test = "pytest"
+coverage = "coverage report"
+tox = "tox"
+docs = "pdoc3 --html --output-dir .public mongorm"
+build = "poetry build"
+
+run = "python -um mongorm.main"
+
 [tool.poetry.dependencies]
 python = "^3.9"
+motor = "^3.1.1"
+pydantic = "^1.10.5"
 
 
 [tool.poetry.group.dev.dependencies]
