@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "mongorm"
+version = "0.1.0"
+description = "MongORM is an ORM (object relational mapping) wrapper using async library motor for MongoDB connection and pydantic for data definition and validation."
+authors = ["Tomas Votava <info@tomasvotava.eu>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+pylint = "^2.16.4"
+mypy = "^1.0.1"
+pytest = "^7.2.2"
+poethepoet = "^0.18.1"
+isort = "^5.12.0"
+pytest-cov = "^4.0.0"
+tox = "^4.4.6"
+pdoc3 = "^0.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
