@@ -24,3 +24,33 @@ poetry add mongorm
 ```
 
 ## Usage
+
+### Create client
+
+```python
+from mongorm import MongORM
+
+client = MongORM("mongodb://root:root@localhost:27017/", "database")
+```
+
+### Define model
+
+```python
+from mongorm import BaseModel, MongoIndex, MongoIndexType
+
+class Book(BaseModel):
+    """Define models the way you would define pydantic models"""
+
+    class Meta:
+        """Meta contains the model's configuration and indexes"""
+        client = client  # pass the client to the model's Meta
+        collection = "books"
+        title = MongoIndex("title", MongoIndexType.ASCENDING)
+        author = MongoIndex("author", MongoIndexType.ASCENDING)
+    
+    # id field of type ObjectId is created automatically
+    title: str
+    author: str
+    year_published: int
+
+```
