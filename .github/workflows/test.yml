@@ -30,3 +30,8 @@ jobs:
         run: poetry run poe test
       - name: coverage
         run: poetry run poe coverage
+      - name: store coverage
+        uses: orgoro/coverage@v3
+        with:
+          coverageFile: ./cov.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
