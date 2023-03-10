@@ -59,7 +59,7 @@ jobs:
       - name: coverage
         run: poetry run poe coverage
       - name: store coverage
-        if: github.event_name == "pull_request"
+        if: github.event_name == 'pull_request'
         uses: orgoro/coverage@v3
         with:
           coverageFile: ./cov.xml
