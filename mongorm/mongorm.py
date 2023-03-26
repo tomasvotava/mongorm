@@ -3,7 +3,7 @@
 import logging
 from datetime import datetime
 from enum import Enum
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Callable, Mapping, Optional, Sequence, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, AsyncGenerator, Callable, Optional, Sequence, Type, TypeVar, Union
 
 import bson
 import pydantic
@@ -12,7 +12,8 @@ import pymongo.errors
 import pymongo.results
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from .index import MongoIndex
+from mongorm.exceptions import DocumentNotFound, MissingClientException
+from mongorm.index import MongoIndex
 
 if TYPE_CHECKING:
     from motor.core import AgnosticClient, AgnosticCollection, AgnosticDatabase
@@ -21,36 +22,6 @@ if TYPE_CHECKING:
 ModelType = TypeVar("ModelType", bound="BaseModel")  # pylint: disable=invalid-name
 
 logger = logging.getLogger(__name__)
-
-
-class MongOrmException(Exception):
-    """Mongo ORM-related exception"""
-
-
-class DocumentNotFound(MongOrmException):
-    """Document was not found"""
-
-    def __init__(self, collection: str, query: dict[str, Any]):
-        self.collection = collection
-        self.query = query
-        super().__init__(f"Document specified by query {query} was not found in collection '{collection}'")
-
-
-class DuplicateDocument(MongOrmException):
-    """Document is duplicate given unique index"""
-
-    def __init__(self, collection: str, code: int | None, detail: Mapping[str, Any] | None = None):
-        self.collection = collection
-        self.code = code
-        self.detail = detail
-        super().__init__(f"Operation failed due to a duplicate key on collection '{collection}' - {code}: {detail}")
-
-
-class MissingClientException(MongOrmException):
-    """A model is missing client definition"""
-
-    def __init__(self, model: "Type[BaseModel]"):
-        super().__init__(f"Model {model} is missing Meta.client definition")
 
 
 class SortDirection(Enum):
