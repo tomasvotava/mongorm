@@ -5,6 +5,10 @@ description = "MongORM is an ORM (object relational mapping) wrapper using async
 authors = ["Tomas Votava <info@tomasvotava.eu>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/tomasvotava/mongorm"
+documentation = "https://tomasvotava.github.io/mongorm/"
+keywords = ["mongodb", "mongo", "orm"]
+packages = [{include = "mongorm"}]
 
 [tool.black]
 line-length = 120

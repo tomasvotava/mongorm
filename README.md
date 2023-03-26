@@ -14,13 +14,13 @@ and [`motor`](https://www.mongodb.com/docs/drivers/motor/) for async MongoDB con
 Using PIP:
 
 ```console
-pip install mongorm
+pip install python-mongorm
 ```
 
 Using poetry:
 
 ```console
-poetry add mongorm
+poetry add python-mongorm
 ```
 
 ## Usage
