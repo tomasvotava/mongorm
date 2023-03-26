@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mongorm"
+name = "python-mongorm"
 version = "0.1.0"
 description = "MongORM is an ORM (object relational mapping) wrapper using async library motor for MongoDB connection and pydantic for data definition and validation."
 authors = ["Tomas Votava <info@tomasvotava.eu>"]
