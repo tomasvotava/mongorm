@@ -1,4 +1,12 @@
-"""Models"""
+"""This code defines the basic Mongo Object-Relational Model (MongORM) framework.
+It consists of a BaseModel class and MongORM class. MongORM provides implementation for basic create, read, update,
+and delete (CRUD) operations on MongoDB documents with a Pydantic schema. BaseModel contains the meta-model
+defining the schema as well as support for CRUD operations. It is a subclass of pydantic.BaseModel
+and defines a default id and created timestamp field. Methods from both classes are used to connect to and operate
+on MongoDB databases. Lastly, there is an ObjectId class that serves as an OID within Pydantic schemaized documents.
+The code also includes some helper classes and enumerations such as MongoIndex and SortDirection to assist with
+the querying of the database.
+"""
 
 import logging
 from datetime import datetime
